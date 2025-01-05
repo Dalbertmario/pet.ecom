@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.header{
+    @apply xs:p-2 md:p-4 bg-slate-100 
+}
+
+::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for IE and Edge */
+body {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.adinBtn{
+   @apply bg-slate-200 p-2 hover:text-white rounded-lg font-medium text-slate-800 hover:bg-slate-700 transition-all
+}
+/* Hide scrollbar for Firefox */
+body {
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.contenBody{
+    @apply  flex h-auto flex-col md:max-w-[800px] xl:max-w-[1000px] max-w-[500px] m-auto xl:text-base md:text-base xs:text-sm 
+}
+.inputfiled{
+    @apply p-2 font-semibold focus:outline-stone-300 outline-2 bg-slate-100 rounded-lg
+}
+
+.productBack{
+    @apply transition-all hover:translate-x-2 hover:translate-y-2 delay-100 hover:bg-stone-200 bg-slate-200 rounded-full flex items-center p-2 px-4 md:max-w-[100px] xl:max-w-[100px] max-w-[80px]
+}
+.petBack{
+    @apply transition-all hover:translate-x-2 hover:translate-y-2 hover:bg-stone-300 delay-100 rounded-lg flex items-center p-3 py-2
+}
+.img{
+    @apply  p-2 xl:justify-between max-h-[90px] max-w-[100px] md:max-w-[200px] md:max-h-[220px] xl:max-h-[200px] 
+}
+.recproduct{
+    @apply xl:max-h-[100px] xl:max-w-[80px] md:max-h-[80px]
+}
+
+.innerimg{
+    @apply p-2 md:max-w-[100px] xl:max-w-[100px] max-w-[70px] rounded-full outline outline-1 outline-slate-400 hover:outline-violet-400 hover:outline-2 transition-all
+}
+
+.shopBrand{
+    @apply hover:opacity-50 transition-all delay-100 md:max-w-[200px] md:max-h-[250px] xl:max-h-[250px] xl:max-w-[200px] xs:min-h-[150px] xs:min-w-[150px] rounded-md
+}
+
+.dashinput{
+    @apply md:w-[400px] xl:w-[700px] w-[200px] outline outline-red-300 rounded-md md:p-2 xl:p-2 p-1 focus:outline-2 focus:outline-red-600 transition-all
+} 
+
+.headerHover{
+    @apply translate-y-[-10px] hover:translate-y-[10px] transition-all
+}
+
+.headerBtn{
+    @apply hover:text-red-600 hover:bg-slate-300 transition-all rounded-lg px-2
+}
+.product-btn{
+    @apply bg-red-500 rounded-lg text-white hover:bg-blue-950 transition-all w-full
+}
+
+.wrapper{
+    @apply flex w-[100px] min-w-[250px] flex-row gap-3
+}
+
+.wrapped-2{
+    @apply xs:w-[170px] md:w-[230px] xl:w-[230px]
+}
+.productjus{
+    @apply flex flex-col p-3 gap-5 xl:min-h-[270px] md:min-h-[270px] xs:min-h-[230px] justify-between
+}
