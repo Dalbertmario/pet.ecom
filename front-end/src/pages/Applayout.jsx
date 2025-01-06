@@ -11,7 +11,7 @@ const {hoverDogstate,hoverCatstate} = useSelector(state=>state.uistore)
         </div>
         <div className="h-screen">
             <Headers/>
-            <div className={clsx(`${hoverCatstate || hoverDogstate ? 'blur-sm' : 'blur-none'} bg-slate-100`)}>{<Outlet/>}</div>
+            <div className={clsx(`${hoverCatstate || hoverDogstate ? 'blur-sm' : 'blur-none'} bg-white`)}>{<Outlet/>}</div>
         </div>
     </div>
   )

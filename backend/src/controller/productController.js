@@ -2,8 +2,9 @@ import Product from "../models/product.js"
 import varient from "../models/varient.js"
 import { sequelize } from "../config/dbconnect.js"
 export const catfood = async(req,res)=>{
+  const {content} = req.params 
     try{
-     const result =await Product.findAll({where:{category:'cat-food'}})
+     const result =await Product.findAll({where:{category:content}})
      if(!result){res.status(401).json({message:'Product not found'})}
      res.status(200).json(result)
     }catch(err){
@@ -12,6 +13,7 @@ export const catfood = async(req,res)=>{
     }
 
 }
+
 
 export const ProductPrice =  async(req,res)=>{
     try{

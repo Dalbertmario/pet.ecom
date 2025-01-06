@@ -13,6 +13,8 @@ import SignUp from './pages/SignUp'
 import Userdash from './features/dashboard/Userdash'
 import ViewProducts from './pages/ViewProducts'
 import DisplaySingleProduct from './pages/DisplaySingleProduct'
+import Shopbybrand from './pages/Shopbybrand'
+import ShopBypets from './pages/ShopBypets'
 
 function App() {
 const {validData}=UseTokenValidation()
@@ -34,7 +36,9 @@ const route = createBrowserRouter([
     {path:'/createRole',element:<CreateRole/>},
     {path:'/userdash',element:<Userdash/>},
     {path:'/products/:animal',element:<ViewProducts/>},
-    {path:'/products/:productname/:id',element:<DisplaySingleProduct/>}
+    {path:'/products/:productname/:id',element:<DisplaySingleProduct/>},
+    {path:'/shopbybrand/:brand',element:<Shopbybrand/>},
+    {path:'/shopybypets/:petname',element:<ShopBypets/>}
   ]}
 ])
   return (

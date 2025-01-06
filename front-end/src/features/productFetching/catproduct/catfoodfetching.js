@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 async function catfood(params){
 const api = import.meta.env.VITE_API_BACKEND 
     try{
-     const data = await fetch(`${api}/products/${params}`)
+     const data = await fetch(`${api}/products/basic-product/${params}`)
      if(!data.ok) throw new Error('Unexpected error')
      const result =await data.json()
     return result
