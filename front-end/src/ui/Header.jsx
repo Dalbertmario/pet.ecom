@@ -9,13 +9,15 @@ import Morepets from "./Morepets";
 import { CgProfile } from "react-icons/cg";
 import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import UsefetchCartItems from "../features/Carting/fetchcartitems";
+import { AiOutlineDatabase } from "react-icons/ai";
 
 function Headers() {
 const {hoverDogstate,hoverCatstate,hoverMorepets} = useSelector((state)=>state.uistore)
 const [position,setPosition]=useState('')
 const dispatch = useDispatch()
 const ref = useRef()
-
+const {data}= UsefetchCartItems()
 function handelPosition(){
   const position = ref.current.getBoundingClientRect()
   console.log(position)
@@ -23,7 +25,7 @@ function handelPosition(){
   setPosition(data)
   dispatch(toggleMorePets(true))
 }
-
+const len=data?.cartItem.length
   return (
     <>
     <header >
@@ -47,6 +49,7 @@ function handelPosition(){
           <button className="text-red-400 hover:text-red-600">
             <NavLink to='/profile'><CgProfile size={30} /></NavLink></button>
          <button onClick={()=>dispatch(setCartToggel())} className="text-red-400 hover:text-red-600">
+         <p className="absolute bg-red-600 px-1 py-1 text-white font-semibold rounded-full top-5 right-1">{len}</p>
           <IoCartOutline size={30} /></button>
          </div>
          </div>

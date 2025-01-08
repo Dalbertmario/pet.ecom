@@ -8,7 +8,7 @@ export default function FirstHeader() {
 const dispath = useDispatch()
 const {sandwich,carttoggle} =useSelector(state=>state.uistore)
 const dispatch = useDispatch()
-console.log(sandwich)
+
   return (
     <div className="flex flex-row xs:flex xl:hidden md:hidden justify-between py-2 p-2">
       <div className="flex flex-row gap-5 items-center">

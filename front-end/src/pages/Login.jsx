@@ -77,6 +77,7 @@ useEffect(() => {
             type="text"
             placeholder="UserName"
             required
+            defaultValue='wild_rds'
           />
           <input
             {...register('password')}
@@ -84,6 +85,7 @@ useEffect(() => {
             type="password" // Changed to password
             placeholder="Password"
             required
+            defaultValue={123456789}
           />
          {error &&  <p className="text-red-400 text-center">{error}</p>}
           <button

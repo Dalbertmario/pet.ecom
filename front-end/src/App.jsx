@@ -38,7 +38,6 @@ const route = createBrowserRouter([
     </ProtectedRoute>}
   ]},
   {element:<Applayout/>,children:[
-    {path:'/cart',element:<Cart/>},
     {path:'/createRole',element:<CreateRole/>},
     {path:'/userdash',element:<Userdash/>},
     {path:'/products/:animal',element:<ViewProducts/>},

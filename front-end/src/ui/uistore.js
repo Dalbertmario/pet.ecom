@@ -65,6 +65,9 @@ const uiStoreReducer = createSlice({
             state.carttoggle = !state.carttoggle
             if(state.carttoggle === true){
                 state.sandwich = false
+                state.hoverDogstate= false
+                state.hoverCatstate= false
+                state.hoverMorepets = false
             }
         }
     }
