@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import http from 'http'
 import { Server } from 'socket.io'
 import dashRouter from './router/dashRouter.js'
+import cartrouter from '../src/router/cartroute.js'
 import productroute from './router/productsroute.js'
 const app = express()
 dotenv.config();
@@ -47,6 +48,7 @@ app.use('/auth',authentication)
 app.use('/user',userrouter)
 app.use('/userdash',dashRouter())
 app.use('/products',productroute)
+app.use('/cart',cartrouter)
 console.log(process.env.PORT)
 
 httpServer.listen(PORT,()=>{

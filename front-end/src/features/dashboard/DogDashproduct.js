@@ -15,11 +15,11 @@ const api = import.meta.env.VITE_API_BACKEND
 }
 
 function UseDogdash(){
-    const {data:dogDash}=useQuery({
+    const {data:dogDash,isLoading}=useQuery({
         queryKey:['dogdash'],
         queryFn:Dogdash
     })
-    return {dogDash}
+    return {dogDash,isLoading}
 }
 
 export default UseDogdash;

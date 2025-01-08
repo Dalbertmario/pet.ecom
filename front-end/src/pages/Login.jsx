@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UseTokenValidation from "../features/signUp/tokenvalidation";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const api = import.meta.env.VITE_API_BACKEND;
 
 export default function Login() {
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState('');
-  const {tokenMutate,validData}=UseTokenValidation()
+  const {tokenMutate,}=UseTokenValidation()
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  function handleForm(data) {
-    setForm(data);
-  }
+  const {role} =useSelector(state=>state.uistore)
+  const navigate= useNavigate()
   useEffect(() => {
     if (form !== null) {
       async function logining() {
@@ -45,24 +44,43 @@ export default function Login() {
       logining();
     }
   }, [form, reset,tokenMutate]);
+
+  useEffect(() => {
+    localStorage.removeItem("role");
+    localStorage.removeItem('token')
+}, []); 
+//navigate
+useEffect(() => {
+  if (role?.user?.role === "admin") {
+    navigate("/admin");
+  } else if (role?.user?.role === "user") {
+    navigate("/userdash");
+  }else if(role?.user?.role=== "customer-care"){
+    navigate('/customercare')
+  }
+}, [role, navigate]);
+
+  function handleForm(data) {
+    setForm(data);
+  }
   return (
-    <div className="bg-blue-300 h-screen">
+    <div className="bg-white h-screen">
       <div className="p-5 flex justify-center">
         <form
           onSubmit={handleSubmit(handleForm)}
-          className="bg-slate-300 w-[400px] rounded-lg p-10 flex mt-44 flex-col gap-7 justify-center"
+          className="bg-slate-100 w-[400px] rounded-lg p-10 flex mt-44 flex-col gap-11 justify-center"
         >
-          <h1 className="font-semibold text-center text-xl">Petting</h1>
+          <h1 className="font-semibold text-red-500 font-condensed text-center text-2xl">Super Petsy</h1>
           <input
             {...register('username')}
-            className="p-2 font-semibold focus:outline-stone-300 outline-2 bg-slate-100 rounded-lg"
+            className="py-1 px-3 text-base focus:outline-red-300 outline-2 bg-slate-200 rounded-lg"
             type="text"
             placeholder="UserName"
             required
           />
           <input
             {...register('password')}
-            className="p-2 font-semibold focus:outline-stone-300 bg-slate-100 rounded-lg"
+            className="py-1 px-3 text-base focus:outline-red-300 bg-slate-200 rounded-lg"
             type="password" // Changed to password
             placeholder="Password"
             required
@@ -70,10 +88,10 @@ export default function Login() {
          {error &&  <p className="text-red-400 text-center">{error}</p>}
           <button
             type="submit" // Ensure button type is submit
-            className="hover:bg-blue-700 hover:text-white transition-all bg-blue-950 p-2 justify-center font-semibold rounded-lg text-slate-200 items-center"
+            className="hover:bg-red-700 hover:text-white transition-all bg-red-500 p-2 justify-center font-semibold rounded-lg text-slate-200 items-center"
           >Login 
           </button>
-          <p>
+          <p className="content-center">
             Create a new account <NavLink to='/signup'><button className="text-blue-500">Sign up</button></NavLink>
           </p>
         </form>

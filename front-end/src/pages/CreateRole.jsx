@@ -48,7 +48,7 @@ export default function CreateRole() {
                     className="inputfiled"
                 >
                     <option value="">Select Role</option>
-                    <option value="dustomer-care">Customer Care</option>
+                    <option value="customer-care">Customer Care</option>
                     <option value="admin">Admin</option>
                 </select>
                 {errors.role && (

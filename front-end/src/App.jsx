@@ -7,38 +7,45 @@ import Applayout from './pages/Applayout'
 import Login from './pages/Login'
 import AdminPage from './pages/AdminPage'
 import CreateRole from './pages/CreateRole'
-import { useEffect, useState } from 'react'
-import UseTokenValidation from './features/signUp/tokenvalidation'
 import SignUp from './pages/SignUp'
 import Userdash from './features/dashboard/Userdash'
 import ViewProducts from './pages/ViewProducts'
 import DisplaySingleProduct from './pages/DisplaySingleProduct'
 import Shopbybrand from './pages/Shopbybrand'
 import ShopBypets from './pages/ShopBypets'
+import ProtectedRoute from './service/ProtectedRoute'
+import AdminLayout from './ui/AdminLayout'
+import Unauthorized from './pages/Unauthorized'
+import Profile from './ui/Profile'
 
 function App() {
-const {validData}=UseTokenValidation()
-const [userIndentification,setuserIdentity]=useState(null)
-useEffect(function(){
-  if(validData){
-  setuserIdentity(validData)
-  }
-},[validData])
+
 
 const route = createBrowserRouter([
-  {path:'login',element:<Login/>},
+  {path:'/',element:<Login/>},
   {path:'/signup',element:<SignUp/>},
+  {path:'/unauthorized',element:<Unauthorized/>},
+  {
+    element:<AdminLayout/>,
+    children:[
+      {path:'/admin',element:
+      (<ProtectedRoute allowedRoles={['admin']}> <AdminPage/> </ProtectedRoute>)},
+    ]
+  },
   {element:<Applayout/>,children:[
-    {path:'/customercare',element:<Customercare/>},
-    {path:'/',element:<Dashboard/>},
+    {path:'/customercare',element:<ProtectedRoute allowedRoles={['admin','customer-care']}>
+      <Customercare/>
+    </ProtectedRoute>}
+  ]},
+  {element:<Applayout/>,children:[
     {path:'/cart',element:<Cart/>},
-    {path:'/admin',element:<AdminPage/>},
     {path:'/createRole',element:<CreateRole/>},
     {path:'/userdash',element:<Userdash/>},
     {path:'/products/:animal',element:<ViewProducts/>},
     {path:'/products/:productname/:id',element:<DisplaySingleProduct/>},
     {path:'/shopbybrand/:brand',element:<Shopbybrand/>},
-    {path:'/shopybypets/:petname',element:<ShopBypets/>}
+    {path:'/shopybypets/:petname',element:<ShopBypets/>},
+    {path:'/profile',element:<Profile/>}
   ]}
 ])
   return (

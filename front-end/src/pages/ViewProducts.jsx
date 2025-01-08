@@ -10,7 +10,6 @@ const {animal} = useParams()
 const {data:productData,isLoading:productLoading} = Usefetchcatfood(animal)
 const {data:priceData,isLoading} = Usepriceing()
 const finalCorrectedtitle =UseTitileformation(animal)
-console.log(animal)
 if(productLoading) return <Loading/>
   return (
     <div className="flex flex-col gap-3 contenBody p-1 ">

@@ -7,13 +7,15 @@ import UseBybreed from "./ShopBreed";
 import ShopbyBreed from "../../ui/ShopbyBreed";
 import ShopbybrandButton from "../../ui/ShopbybrandButton";
 import ShopbypetButton from "../../ui/ShopbypetButton";
+import Loading from '../../ui/Loading'
 
 export default function Userdash() {
 const {logodata,logoLoading} =useDashlogoFetch();
 const {dashing,productloding}=UseDashBoradproduct();
-const {dogDash}=UseDogdash()
-const {byBreed}=UseBybreed()
-
+const {dogDash,isLoading:dogLoading}=UseDogdash()
+const {byBreed,isLoading:breedLoading}=UseBybreed()
+if(logoLoading || productloding || dogLoading || breedLoading) return <Loading/>
+console.log(logoLoading,productloding,dogLoading,breedLoading)
   return (
     <div className="contenBody flex-col gap-4">
          <ShopbybrandButton logo = {logodata}/>

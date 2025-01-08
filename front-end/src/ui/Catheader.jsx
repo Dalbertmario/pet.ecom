@@ -4,8 +4,11 @@ import { useDispatch } from 'react-redux'
 export default function Catheader({hover,hoverstate}) {
 const dispatch = useDispatch()
   return (
-     <div>
-           <div className={clsx(`flex justify-center gap-8 w-screen z-10  ${hoverstate ? 'absolute right-[2px] p-10 w-screen transition-all' : ' mb-10 p-0 h-0'} bg-slate-100 transition-all`)} onMouseLeave={()=>dispatch(hover(false))}>
+    
+          <div className={clsx(`flex justify-center gap-8 w-screen z-10 ${hoverstate ? 'w-screen h-[180px]' : 'h-[0px] w-screen'} ease-in-out  duration-300 bg-slate-100 transition-all `)} onMouseLeave={()=>dispatch(hover(false))}>
+            {
+              hoverstate &&
+             <>
                    <div className="flex flex-col gap-2">
                     <h1 className='font-semibold'>Food & Treats</h1>
                     <button className='hover:text-red-600 hover:bg-slate-300 transition-all rounded-lg'>Dry Food</button>
@@ -30,7 +33,9 @@ const dispatch = useDispatch()
                      <button className='headerBtn'>Healthcare aids</button>
                      <button className='headerBtn'>Flea & ticks</button>
                    </div>
-                   </div>
-         </div>
+                   </>    
+}   
+            </div>
+       
   )
 }

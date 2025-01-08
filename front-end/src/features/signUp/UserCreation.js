@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 async function roleCreation(params) {
     const formdata = new FormData()
@@ -16,6 +17,7 @@ async function roleCreation(params) {
 }
 
 function Createappuser(){
+const navigate = useNavigate
      const {isLoading:adminLoading,mutate:userCreate} = useMutation({
         mutationFn:(data)=>roleCreation(data),
         onError:(err)=>{
@@ -23,6 +25,7 @@ function Createappuser(){
         },
         onSuccess:()=>{
             toast.success('Successfully created user')
+             navigate('/login')
         }
      })
      return {adminLoading,userCreate}

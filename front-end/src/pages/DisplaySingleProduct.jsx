@@ -46,7 +46,7 @@ export default function DisplaySingleProduct() {
   const title = UseTitileformation(productname);
 
   if (isLoading) return <Loading />;
-
+  
   if (error)
     return (
       <div className="text-red-500 text-center mt-5">

@@ -26,18 +26,18 @@ export const login = async(req,res)=>{
 try{
   const {username,password}=req.body;
   const user = await User.findOne({where:{user_name:username}})
-  
+  console.log(user)
   if(!user){
     return res.status(401).json({message:'Invalid username or password'})
   }
   const isMatch = await bcrypt.compare(password,user.user_password)
-  console.log(isMatch)
   if(!isMatch) res.status(400).json({message:'Invalid credientails'})
   
   const token = JWT.sign({id:user.user_id,role:user.role},process.env.JWT_SECRET,{
     expiresIn:"1h"
   })
-  res.status(200).json({token,user:{id:user.user_id,role:user.role}})
+
+  res.status(200).json({token:token,username:user.user_name,email:user.user_email,user:{id:user.user_id,role:user.role}})
   }catch(err){
     res.status(500).json({message:'Something went wrong'})
     console.log(err)

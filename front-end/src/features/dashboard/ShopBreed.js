@@ -15,11 +15,11 @@ const api = import.meta.env.VITE_API_BACKEND
 
 
 function UseBybreed(){
-    const {data:byBreed}= useQuery({
+    const {data:byBreed,isLoading}= useQuery({
       queryKey:['bybreed'],
       queryFn:shopByBreed
     })
-    return {byBreed}
+    return {byBreed,isLoading}
 }
 
 export default UseBybreed;

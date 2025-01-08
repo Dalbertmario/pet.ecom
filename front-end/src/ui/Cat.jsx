@@ -5,7 +5,7 @@ export default function Cat({catproduct}) {
     <div  className=" flex flex-row  max-w-auto overflow-scroll xs:justify-start xl:justify-center md:justify-center">
       <div className="flex flex-row gap-3">
         <div>
-        <img className='recproduct innerimg' src="https://petsstore.s3.us-east-1.amazonaws.com/pngwing.com+(12).png"/>
+        <img className='recproduct innerimg ' src="https://petsstore.s3.us-east-1.amazonaws.com/pngwing.com+(12).png"/>
         <p className="flex justify-center font-medium">Cat</p>
         </div>
         {catproduct?.map(el=>(

@@ -2,18 +2,20 @@ import React,{ useMemo, useState } from "react"
 import clsx from 'clsx'
 import { moneyformat } from "../helper/Moneyformat"
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import CartingData from "../features/Carting/carting"
 
 function DisplayingProducts({price=[],data}) {
-const [productPrice,setProductPrice]=useState()
+const [productPrice,setProductPrice]=useState(null)
 const {productid,productimage,productname,brandname} = data
-
+const [toAddWeight,setWeight] = useState(null)
+const {mutate:cartmutate} = CartingData()
 const pricedata = useMemo(() => price?.filter(el => el.productid === productid), [price, productid]);
-
 function handelClick(id){
   const data = pricedata.find(el => el?.id === id);
   if (data) setProductPrice(data);
+  setWeight(data)
 }
-
 const def = useMemo(() => {
   return pricedata?.reduce((acc, dat) => {
     if (!acc.some(item => item?.productid === dat?.varient_id)) {
@@ -38,8 +40,20 @@ const correctedlink = useMemo(() => {
   return linkCorrection.map(el => (el === '/' ? ' ' : el)).join(' ');
 }, [linkCorrection]);
 
+function handelAddProduct(datas){
+  const roles = JSON.parse(localStorage.getItem('role'))
+   if(datas[0]){
+     const cartitem= datas[0]
+     cartmutate({productid:cartitem.productid,quantity:1,varientid:cartitem.id,userid:roles?.user?.id})
+   }else{
+     const cartitem = {...datas}
+     cartmutate({productid:cartitem.productid,quantity:1,varientid:cartitem.id,userid:roles?.user?.id})
+   }
+  
+}
   return (
     <div className=" bg-white wrapped-2">
+        
             <div className="shadow-xl flex flex-col rounded-lg  min-h-[450px] justify-between">
             <NavLink to={`/products/${correctedlink}/${productid}`}>
             <img src={productimage}/>
@@ -56,8 +70,9 @@ const correctedlink = useMemo(() => {
               Save {!productPrice ? def.map(el=> Math.round((el.offerprice/el.price)*10)) : Math.round((productPrice?.offerprice / (productPrice?.price || 1)) * 10)} %
               </span>
             </p>
-            <h1 className={clsx(`flex ${pricedata[0] && 'outline-red-500'} outline-gray-300 flex-row gap-2 flex-wrap text-[13px]`)}>{pricedata?.map(el=><button onClick={()=>handelClick(el?.id)} key={el?.id} className={clsx(`${productPrice?.id ? 'outline-red-400' : ''} flex gap-4 outline outline-2 outline-slate-300 p-1 px-2 rounded-lg`)}>{el?.weight}</button>)}</h1>
-            <button className="product-btn">Add to cart</button>
+            <div className={clsx(`flex ${def.map(el=>el) && 'outline-red-500'} outline-gray-300 flex-row gap-2 flex-wrap text-[13px]`)}>{pricedata?.map(el=><button onClick={()=>handelClick(el?.id)} key={el?.id} className={clsx(`${productPrice?.id ? 'outline-red-400' : ''} flex gap-4 outline outline-2 outline-slate-300 py-1 px-1 rounded-lg`)}>{el?.weight}</button>)}</div>
+            <button onClick={()=>handelAddProduct(toAddWeight || def.map(el=>el))} className="product-btn">Add to cart</button>
+                
             </div>
             </div>
             </div>
