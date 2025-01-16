@@ -22,7 +22,7 @@ UserDash.init(
     proname:{
       type:DataTypes.TEXT,
       allowNull:true
-    }
+    },
   },
   {
     sequelize,

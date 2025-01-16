@@ -1,6 +1,8 @@
+
 import { moneyformat } from "../helper/Moneyformat";
 
 export default function TotalpriceCart({data}) {
+
   return (
     <div className="flex flex-col gap-5">
         <div>
@@ -10,7 +12,6 @@ export default function TotalpriceCart({data}) {
        <p className="flex justify-between">You pay <span className="font-mono">{moneyformat(data?.grandtotal)}</span></p> 
        </div>
        <div>
-       <button className="bg-red-500 w-full py-1 hover:bg-red-600 transition-all font-semibold text-white rounded-lg">CheckOut <span>{moneyformat(data?.grandtotal)}</span> </button>
        </div>
     </div>
   )

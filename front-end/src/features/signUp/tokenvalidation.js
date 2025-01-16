@@ -10,7 +10,7 @@ async function tokenValidate(params) {
         const result = await fetch(`${api}/user/${params.role}`, {
             method: 'GET',
             headers: {
-                'authorization': `Bearer ${token}` // Fixed the typo here
+                'authorization': `Bearer ${token}` 
             }
         });
 

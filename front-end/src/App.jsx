@@ -1,7 +1,5 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Customercare from './pages/Customercare'
-import Dashboard from './pages/Dashboard'
-import Cart from './pages/Cart'
 import {Toaster} from 'react-hot-toast'
 import Applayout from './pages/Applayout'
 import Login from './pages/Login'
@@ -17,6 +15,14 @@ import ProtectedRoute from './service/ProtectedRoute'
 import AdminLayout from './ui/AdminLayout'
 import Unauthorized from './pages/Unauthorized'
 import Profile from './ui/Profile'
+import SearchViewPage from './pages/SearchViewPage'
+import Addresspage from './pages/Addresspage'
+import CheackOut from './pages/CheackOut'
+import Successpage from './pages/Successpage'
+import UserOrder from './pages/UserOrder'
+import HeaderProducts from './pages/HeaderProducts'
+import Wishlist from './pages/Wishlist'
+import Errorpage from './pages/Errorpage'
 
 function App() {
 
@@ -24,6 +30,7 @@ function App() {
 const route = createBrowserRouter([
   {path:'/',element:<Login/>},
   {path:'/signup',element:<SignUp/>},
+  {path:'/success',element:<Successpage/>},
   {path:'/unauthorized',element:<Unauthorized/>},
   {
     element:<AdminLayout/>,
@@ -38,13 +45,21 @@ const route = createBrowserRouter([
     </ProtectedRoute>}
   ]},
   {element:<Applayout/>,children:[
-    {path:'/createRole',element:<CreateRole/>},
-    {path:'/userdash',element:<Userdash/>},
-    {path:'/products/:animal',element:<ViewProducts/>},
-    {path:'/products/:productname/:id',element:<DisplaySingleProduct/>},
-    {path:'/shopbybrand/:brand',element:<Shopbybrand/>},
-    {path:'/shopybypets/:petname',element:<ShopBypets/>},
-    {path:'/profile',element:<Profile/>}
+    {path:'/wishlist',element:<Wishlist/>,errorElement:<Errorpage/>},
+    {path:'/headerpro/:animal',element:<HeaderProducts/>,errorElement:<Errorpage/>},
+    {path:'/createRole',element:<CreateRole/>,errorElement:<Errorpage/>},
+    {path:'/customer',element:<Customercare/>,errorElement:<Errorpage/>},
+    {path:'/userdash',element:<Userdash/>,errorElement:<Errorpage/>},
+    {path:'/products/:animal',element:<ViewProducts/>,errorElement:<Errorpage/>},
+    {path:'/products/:productname/:id',element:<DisplaySingleProduct/>,errorElement:<Errorpage/>},
+    {path:'/shopbybrand/:brand',element:<Shopbybrand/>,errorElement:<Errorpage/>},
+    {path:'/shopybypets/:petname',element:<ShopBypets/>,errorElement:<Errorpage/>},
+    {path:'/profile',element:<Profile/>,errorElement:<Errorpage/>},
+    {path:'/addressForm',element:<Addresspage/>,errorElement:<Errorpage/>},
+    {path:'/search/:el',element:<SearchViewPage/>,errorElement:<Errorpage/>},
+    {path:'/checkout',element:<CheackOut/>,errorElement:<Errorpage/>},
+    {path:'/order',element:<UserOrder/>,errorElement:<Errorpage/>},
+
   ]}
 ])
   return (

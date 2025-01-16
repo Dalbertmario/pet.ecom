@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { act } from "react"
 
 const initialState={
     hoverDogstate:false,
@@ -10,7 +11,13 @@ const initialState={
     sandwichdog:false,
     sandwichcat:false,
     role:null,
-    carttoggle:false
+    carttoggle:false,
+    query:[],
+    location:[],
+    loading:false,
+    search: '',
+    orderbtnClick:false,
+    headerProducts : null
 }
 
 const uiStoreReducer = createSlice({
@@ -69,9 +76,30 @@ const uiStoreReducer = createSlice({
                 state.hoverCatstate= false
                 state.hoverMorepets = false
             }
+        },
+        setQuery:(state,action)=>{
+            state.query = action.payload
+        },
+        setLocation:(state,action)=>{
+            state.location = action.payload
+        },
+        setLoading:(state,action)=>{
+            state.loading = action.payload
+        },
+        setSearch:(state,action)=>{
+            state.search = action.payload
+        },
+        setCheckOutItem:(state,action)=>{
+            state.CheackOut = action.payload
+        },
+        toggelOrderBtnclick:(state)=>{
+            state.orderbtnClick = !state.orderbtnClick
+        },
+        setHeaderProducts:(state,action)=>{
+            state.headerProducts = action.payload
         }
     }
 })
 
-export const {toggelDogHover,toggelCathover,toggleMorePets,toggleBirds,toggleFish,togglesandWitch,togglesandwichCat,togglesandwichDog,settingUser, setCartToggel} = uiStoreReducer.actions
+export const {setHeaderProducts,toggelOrderBtnclick,setCheckOutItem,setSearch,setLoading,toggelDogHover,toggelCathover,toggleMorePets,toggleBirds,toggleFish,togglesandWitch,togglesandwichCat,togglesandwichDog,settingUser, setCartToggel,setQuery,setLocation} = uiStoreReducer.actions
 export default uiStoreReducer.reducer;

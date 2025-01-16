@@ -30,6 +30,10 @@ Product.init({
         type:DataTypes.STRING,
         allowNull: false
     },
+    typeof:{
+        type:DataTypes.TEXT,
+        allowNull:true
+      }
 },
     {
      sequelize,

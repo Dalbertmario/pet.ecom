@@ -23,7 +23,7 @@ FROM nginx:alpine
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
 # Expose the port for Nginx
-EXPOSE 514
+EXPOSE 5173
 
 # Command to run Nginx
 CMD ["nginx", "-g", "daemon off;"]

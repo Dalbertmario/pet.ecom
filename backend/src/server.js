@@ -10,6 +10,14 @@ import { Server } from 'socket.io'
 import dashRouter from './router/dashRouter.js'
 import cartrouter from '../src/router/cartroute.js'
 import productroute from './router/productsroute.js'
+import searchrouter from  './router/searchrouter.js'
+import locationRouter from './router/loactionRouter.js'
+import FormRouter from './router/FormRouter.js'
+import accountDetails from './router/accountDetails.js'
+import OrderRouter from './router/orderrouter.js'
+import wishlistRouter from './router/Wishlistrouter.js'
+import Uiheaderrouter from './router/Uiheaderrouter.js'
+
 const app = express()
 dotenv.config();
 app.use(cors());
@@ -49,6 +57,13 @@ app.use('/user',userrouter)
 app.use('/userdash',dashRouter())
 app.use('/products',productroute)
 app.use('/cart',cartrouter)
+app.use('/item',searchrouter)
+app.use('/locations',locationRouter)
+app.use('/userdetails',FormRouter)
+app.use('/acc',accountDetails)
+app.use('/order',OrderRouter)
+app.use('/wish',wishlistRouter)
+app.use('/ui',Uiheaderrouter)
 console.log(process.env.PORT)
 
 httpServer.listen(PORT,()=>{

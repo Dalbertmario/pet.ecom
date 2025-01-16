@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { moneyformat } from "../helper/Moneyformat";
 import clsx from 'clsx'
+import CartingData from "../features/Carting/carting";
 
 export default function SingelProduct({data=[], weights=[]}) {
 const  {productimage,brandname,productname} = data
+const {mutate:cartmutate}= CartingData()
 const [priceing,setPricing]=useState(weights[0] || null)
+const [quantitys,setQuantity]=useState(1)
 const def = weights?.reduce((acc,dat)=>{
     if(!acc?.some(item => item?.varient_id === dat?.varient_id)){
       acc.push(dat);
@@ -15,7 +18,18 @@ const def = weights?.reduce((acc,dat)=>{
   function handelWeight(item){
        setPricing(item)
   }
-  
+  // userid,productid,varientid,quantity
+function handelAddtoChart(price,quantity){
+  const role  = JSON.parse(localStorage.getItem('role'))
+      const carting ={
+        userid:role?.user?.id,
+        quantity:quantity,
+        varientid:price.id,
+        productid:price.varient_id
+      }
+      console.log(carting)
+   cartmutate(carting)
+}
   return (
     <div>
       <div className="md:grid md:grid-cols-[1fr_1fr] xl:grid xl:grid-cols-[1fr_1fr]    gap-8 xs:flex xs:flex-col" >
@@ -49,6 +63,8 @@ const def = weights?.reduce((acc,dat)=>{
                         price: el.price,
                         offerprice: el.offerprice,
                         weight: el.weight,
+                        varient_id:el.varient_id,
+                        id:el.id
                       })
                     }
                     className={`outline outline-1 outline-slate-300 px-3 py-1  text-sm rounded-lg transition-all text-slate-500 ${
@@ -66,16 +82,16 @@ const def = weights?.reduce((acc,dat)=>{
             {/* Quantity */}
             <div className=" outline outline-2 focus:outline-slate-600 outline-slate-300 max-w-[60px] p-1 rounded-lg hover:shadow-2xl">
             <p className="text-slate-500 text-sm">Quantity</p>
-            <select className="bg-white max-w-[60px] px-3">
-              <option >1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
+            <select onChange={(e)=>setQuantity(e.target.value)} className="bg-white max-w-[60px] px-3">
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
             </select>
             </div>
-            <button className="p-2 bg-red-500 text-white rounded-xl hover:shadow-2xl transition-all">Add to cart</button>
+            <button onClick={()=>handelAddtoChart(priceing,quantitys)} className="p-2 bg-red-500 text-white rounded-xl hover:shadow-2xl transition-all">Add to cart</button>
         </div>
       </div>
     </div>

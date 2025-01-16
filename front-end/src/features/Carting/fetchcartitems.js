@@ -4,7 +4,6 @@ async function fetchcartitemsApi() {
     const api = import.meta.env.VITE_API_BACKEND 
     const id = JSON.parse(localStorage.getItem('role'))
     const userId = id?.user?.id
-    console.log(userId)
     if(!userId) throw new Error('User Id')
     try{
         const result = await fetch(`${api}/cart/fetchCartItems/${userId}`,{
@@ -12,7 +11,6 @@ async function fetchcartitemsApi() {
         })
         if(!result.ok) throw new Error('There is an error in fetching the cart data')
         const res = await result.json()
-        console.log(res)
         return res
     }catch(err){
         console.log(err)

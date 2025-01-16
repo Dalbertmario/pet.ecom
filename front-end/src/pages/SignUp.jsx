@@ -14,7 +14,7 @@ const password = getValues('password')
     <div className="p-5 flex justify-center">
       <form
        onSubmit={handleSubmit(formhandel)}
-        className="bg-slate-100 w-[400px] rounded-lg p-10 flex mt-44 flex-col gap-11 justify-center"
+        className="bg-slate-100 w-[400px] rounded-lg p-10 flex mt-[75px] flex-col gap-11 justify-center"
       >
           <h1 className="content-start font-semibold text-red-500 text-2xl m-auto font-condensed ">Super Petsy</h1>
         <input

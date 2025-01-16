@@ -33,6 +33,26 @@ User.init(
             type: DataTypes.ENUM('user', 'admin', 'customer-care'),
             defaultValue: 'user',
         },
+        mobile:{
+            type:DataTypes.INTEGER,
+            allowNull:true
+        },
+        petname:{
+            type:DataTypes.STRING(255),
+            allowNull:true
+        },
+        address:{
+            type:DataTypes.STRING(300),
+            allowNull:false
+        },
+        houseno:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
+        pincode:{
+            type:DataTypes.INTEGER,
+            allowNull:true
+        }
     },
     {
         sequelize,

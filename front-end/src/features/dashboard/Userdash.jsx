@@ -8,16 +8,19 @@ import ShopbyBreed from "../../ui/ShopbyBreed";
 import ShopbybrandButton from "../../ui/ShopbybrandButton";
 import ShopbypetButton from "../../ui/ShopbypetButton";
 import Loading from '../../ui/Loading'
+import Coroselimage from "../../ui/Coroselimage";
+import UseCorosel from "./Uicorosel";
 
 export default function Userdash() {
 const {logodata,logoLoading} =useDashlogoFetch();
 const {dashing,productloding}=UseDashBoradproduct();
 const {dogDash,isLoading:dogLoading}=UseDogdash()
+const {data:corselData}= UseCorosel()
 const {byBreed,isLoading:breedLoading}=UseBybreed()
 if(logoLoading || productloding || dogLoading || breedLoading) return <Loading/>
-console.log(logoLoading,productloding,dogLoading,breedLoading)
   return (
     <div className="contenBody flex-col gap-4">
+         <Coroselimage image={corselData}/>
          <ShopbybrandButton logo = {logodata}/>
        <div className="flex flex-col gap-4 px-2 justify-center">
        <Cat catproduct={dashing}/>

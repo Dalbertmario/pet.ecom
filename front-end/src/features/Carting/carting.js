@@ -1,8 +1,9 @@
 import {useMutation, useQueryClient } from "@tanstack/react-query"
+import { useDispatch } from "react-redux"
+import { setCartToggel } from "../../ui/uistore"
 
 async function carting(params) {
 const api = import.meta.env.VITE_API_BACKEND 
-console.log(params)
     try{
        const result = await fetch(`${api}/cart/items`,{
           method : 'PUT',
@@ -16,10 +17,12 @@ console.log(params)
 }
 
 function CartingData(){
+const dispatch =useDispatch()
 const query = useQueryClient()
     const {mutate}=useMutation({
         mutationFn:(data)=>carting(data),
         onSuccess:()=>{
+            dispatch(setCartToggel(true))
             query.invalidateQueries(['cart'])
         }
     })

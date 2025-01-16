@@ -4,38 +4,51 @@ import { FaLocationDot } from "react-icons/fa6";
 import Dogheader from "./Dogheader";
 import Catheader from "./Catheader";
 import { useDispatch, useSelector } from "react-redux";
-import { toggelCathover, toggelDogHover, toggleMorePets,setCartToggel} from "./uistore";
+import { toggelCathover, toggelDogHover, toggleMorePets,setCartToggel,setSearch} from "./uistore";
 import Morepets from "./Morepets";
 import { CgProfile } from "react-icons/cg";
 import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import UsefetchCartItems from "../features/Carting/fetchcartitems";
-import { AiOutlineDatabase } from "react-icons/ai";
+import useSearch from "../features/search/search";
+import Searching from "./Searching";
+import UseAccountdetailsFetch from "../features/dashboard/accountDetailsFetch";
 
 function Headers() {
-const {hoverDogstate,hoverCatstate,hoverMorepets} = useSelector((state)=>state.uistore)
+const {hoverDogstate,hoverCatstate,hoverMorepets,location,search} = useSelector((state)=>state.uistore)
 const [position,setPosition]=useState('')
+const {data:UserData} = UseAccountdetailsFetch()
+const {data:searchdata}= useSearch(search)
 const dispatch = useDispatch()
 const ref = useRef()
 const {data}= UsefetchCartItems()
+
 function handelPosition(){
   const position = ref.current.getBoundingClientRect()
-  console.log(position)
   const data = {x:position.right+window.scrollY,y:position.left+window.scrollX}
   setPosition(data)
   dispatch(toggleMorePets(true))
 }
 const len=data?.cartItem.length
+function setingtheSeaarch(e){
+  dispatch(setSearch(e))
+}
+const role = JSON.parse(localStorage.getItem('role'))
+
   return (
     <>
     <header >
         <div className="header flex items-center justify-between">
-        <div>
-        <FaLocationDot />
-        </div>
+        <button className="flex flex-row gap-2">
+          <NavLink to='/addressForm'>
+           <p className="pb-2"><FaLocationDot /></p> 
+           <p>{UserData?.map(el=>(<div className="flex flex-col text-[11px]" key={el?.pincode}> <p>{el?.address}</p></div>))}</p> 
+        </NavLink>
+        </button>
       
         <div className="flex gap-2 flex-col">
-          <input className="dashinput" type="text"/>
+          <input onChange={(e)=>setingtheSeaarch(e.target.value)} className={`dashinput ${searchdata?.length > 0 ? 'rounded-t-md' : 'rounded-md' }`}  type="text"/>
+          <Searching datas={searchdata}/>
           <div className="xs:hidden md:block xl:block">
           <div className="flex gap-2 justify-between">
             <button onMouseEnter={()=>dispatch(toggelDogHover(true))}>bog</button>
@@ -46,10 +59,13 @@ const len=data?.cartItem.length
         </div>
         <div className="xs:hidden xl:block md:block">
          <div className="flex flex-row gap-5 ">
-          <button className="text-red-400 hover:text-red-600">
-            <NavLink to='/profile'><CgProfile size={30} /></NavLink></button>
+          <button className="text-red-400 font-semibold hover:text-red-600">
+           {role?.user ? <NavLink to='/profile'><CgProfile size={30} /></NavLink> :
+           <NavLink to='/'>Login/Sign up</NavLink>}
+           </button>
+           
          <button onClick={()=>dispatch(setCartToggel())} className="text-red-400 hover:text-red-600">
-         <p className="absolute bg-red-600 px-1 py-1 text-white font-semibold rounded-full top-5 right-1">{len}</p>
+        {len!=0 && <p className="absolute bg-red-500 px-[5px] py-[5xp] text-white font-semibold rounded-full text-[14px] top-7 right-1">{len}</p> }
           <IoCartOutline size={30} /></button>
          </div>
          </div>

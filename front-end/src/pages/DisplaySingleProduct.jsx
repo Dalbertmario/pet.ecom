@@ -42,6 +42,7 @@ export default function DisplaySingleProduct() {
 
     if (id) fetchData();
   }, [id, api]);
+  console.log(weight)
 
   const title = UseTitileformation(productname);
 
@@ -57,7 +58,8 @@ export default function DisplaySingleProduct() {
 
   return (
     <div className="contenBody bg-white flex flex-col gap-2 p-4">
-      <h1 className="text-slate-600 font-medium mt-5">{title}</h1>
+    
+    <p className="flex gap-2 font-extralight text-red-500 "><NavLink to='/userdash'>Home</NavLink> <p className="text-slate-600 font-thin">{title}</p></p>
       {product.length > 0 ? (
         product.map((el) => (
           <SingelProduct key={el.productid} data={el} weights={weight} />

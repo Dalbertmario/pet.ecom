@@ -41,7 +41,6 @@ export const selectedProductlist = async(req,res)=>{
   const {id} = req.params
   try{
     const result = await varient.findAll({where:{varient_id:id}})
-    console.log(result)
     if(result.lenght === 0){
      return res.status(404).json({message:'product not found'})
     }

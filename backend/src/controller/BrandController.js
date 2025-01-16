@@ -3,7 +3,7 @@ import Product from "../models/product.js"
 
 export const brandFetching = async (req,res)=>{
     const {brand} = req.params
-    console.log(brand)
+
     try{
      const result = await Product.findAll({where:{brandname:brand}})
      if(result.length === 0){
