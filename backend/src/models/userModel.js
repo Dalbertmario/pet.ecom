@@ -43,11 +43,11 @@ User.init(
         },
         address:{
             type:DataTypes.STRING(300),
-            allowNull:false
+            allowNull:true
         },
         houseno:{
             type:DataTypes.INTEGER,
-            allowNull:false
+            allowNull:true
         },
         pincode:{
             type:DataTypes.INTEGER,

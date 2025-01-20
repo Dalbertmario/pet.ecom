@@ -17,7 +17,8 @@ const initialState={
     loading:false,
     search: '',
     orderbtnClick:false,
-    headerProducts : null
+    headerProducts : null,
+    AllorderDetails:{}
 }
 
 const uiStoreReducer = createSlice({
@@ -97,9 +98,12 @@ const uiStoreReducer = createSlice({
         },
         setHeaderProducts:(state,action)=>{
             state.headerProducts = action.payload
+        },
+        setAllorderdetails:(state,action)=>{
+            state.AllorderDetails = action.payload
         }
     }
 })
 
-export const {setHeaderProducts,toggelOrderBtnclick,setCheckOutItem,setSearch,setLoading,toggelDogHover,toggelCathover,toggleMorePets,toggleBirds,toggleFish,togglesandWitch,togglesandwichCat,togglesandwichDog,settingUser, setCartToggel,setQuery,setLocation} = uiStoreReducer.actions
+export const {setAllorderdetails,setHeaderProducts,toggelOrderBtnclick,setCheckOutItem,setSearch,setLoading,toggelDogHover,toggelCathover,toggleMorePets,toggleBirds,toggleFish,togglesandWitch,togglesandwichCat,togglesandwichDog,settingUser, setCartToggel,setQuery,setLocation} = uiStoreReducer.actions
 export default uiStoreReducer.reducer;

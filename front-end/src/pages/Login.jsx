@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import UseTokenValidation from "../features/signUp/tokenvalidation";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import UseLocationfetching from "../features/locationfetch/locationfetching";
 
 const api = import.meta.env.VITE_API_BACKEND;
 
@@ -13,6 +14,7 @@ export default function Login() {
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(false);
   const {role} =useSelector(state=>state.uistore)
+  const {data} = UseLocationfetching() 
   const navigate= useNavigate()
   useEffect(() => {
     if (form !== null) {

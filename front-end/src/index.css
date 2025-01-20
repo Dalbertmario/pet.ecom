@@ -80,3 +80,8 @@ body {
 .searching{
     @apply md:w-[400px] xl:w-[700px] w-[200px] outline outline-red-300 rounded-b-md md:p-2 xl:p-2 p-1 focus:outline-2 focus:outline-red-600 transition-all
 }
+
+/* Admin side */
+.adminHeading{
+    @apply font-semibold text-slate-600
+}

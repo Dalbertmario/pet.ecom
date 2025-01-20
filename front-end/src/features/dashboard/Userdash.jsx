@@ -19,13 +19,14 @@ const {data:corselData}= UseCorosel()
 const {byBreed,isLoading:breedLoading}=UseBybreed()
 if(logoLoading || productloding || dogLoading || breedLoading) return <Loading/>
   return (
-    <div className="contenBody flex-col gap-4">
+    <div className="contenBody flex-col gap-3">
          <Coroselimage image={corselData}/>
-         <ShopbybrandButton logo = {logodata}/>
+         
        <div className="flex flex-col gap-4 px-2 justify-center">
        <Cat catproduct={dashing}/>
        <Dog dogproduct={dogDash}/>
        </div>
+         <ShopbybrandButton logo = {logodata}/>
          <ShopbypetButton/>
          <ShopbyBreed breed={byBreed}/>
     </div>

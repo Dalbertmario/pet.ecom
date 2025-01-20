@@ -17,6 +17,8 @@ import accountDetails from './router/accountDetails.js'
 import OrderRouter from './router/orderrouter.js'
 import wishlistRouter from './router/Wishlistrouter.js'
 import Uiheaderrouter from './router/Uiheaderrouter.js'
+import visitorDataRouter from './router/vistorsDataRouter.js'
+import AllorderRouter from './router/AllorderRouter.js'
 
 const app = express()
 dotenv.config();
@@ -64,6 +66,8 @@ app.use('/acc',accountDetails)
 app.use('/order',OrderRouter)
 app.use('/wish',wishlistRouter)
 app.use('/ui',Uiheaderrouter)
+app.use('/admin',AllorderRouter)
+app.use('/visitors',visitorDataRouter)
 console.log(process.env.PORT)
 
 httpServer.listen(PORT,()=>{

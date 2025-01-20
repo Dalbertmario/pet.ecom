@@ -93,7 +93,7 @@ function handeldeleteWishlist(od){
               Save {!productPrice ? def.map(el=> Math.round((el.offerprice/el.price)*10)) : Math.round((productPrice?.offerprice / (productPrice?.price || 1)) * 10)} %
               </span>
             </p>
-            <div className={clsx(`flex outline-gray-300 flex-row gap-2 flex-wrap text-[13px]`)}>
+            <div className={clsx(`flex outline-red-300 flex-row gap-2 flex-wrap text-[13px]`)}>
               {pricedata?.map(el=>
               <button onClick={()=>handelClick(el?.id)} key={el?.id} className={clsx(` outline-slate-300 flex gap-4 outline outline-2 py-1 px-1 rounded-lg`)}>
                 {el?.weight}</button>)}</div>

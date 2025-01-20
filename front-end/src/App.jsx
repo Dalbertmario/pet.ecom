@@ -3,7 +3,7 @@ import Customercare from './pages/Customercare'
 import {Toaster} from 'react-hot-toast'
 import Applayout from './pages/Applayout'
 import Login from './pages/Login'
-import AdminPage from './pages/AdminPage'
+import AdminPage from './pages/admin/AdminPage'
 import CreateRole from './pages/CreateRole'
 import SignUp from './pages/SignUp'
 import Userdash from './features/dashboard/Userdash'
@@ -12,7 +12,7 @@ import DisplaySingleProduct from './pages/DisplaySingleProduct'
 import Shopbybrand from './pages/Shopbybrand'
 import ShopBypets from './pages/ShopBypets'
 import ProtectedRoute from './service/ProtectedRoute'
-import AdminLayout from './ui/AdminLayout'
+import AdminLayout from './pages/admin/AdminLayout'
 import Unauthorized from './pages/Unauthorized'
 import Profile from './ui/Profile'
 import SearchViewPage from './pages/SearchViewPage'
@@ -23,6 +23,7 @@ import UserOrder from './pages/UserOrder'
 import HeaderProducts from './pages/HeaderProducts'
 import Wishlist from './pages/Wishlist'
 import Errorpage from './pages/Errorpage'
+import AdminAddproduct from './pages/admin/AdminAddproduct'
 
 function App() {
 
@@ -37,6 +38,7 @@ const route = createBrowserRouter([
     children:[
       {path:'/admin',element:
       (<ProtectedRoute allowedRoles={['admin']}> <AdminPage/> </ProtectedRoute>)},
+      {path:'/addproduct',element:<ProtectedRoute allowedRoles={['admin']}> <AdminAddproduct/></ProtectedRoute>}
     ]
   },
   {element:<Applayout/>,children:[

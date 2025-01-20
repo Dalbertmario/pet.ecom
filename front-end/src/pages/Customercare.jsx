@@ -23,7 +23,6 @@ useEffect(function(){
 
 
 function handelSendMessage(data){
-  console.log(data)
   Refsocket.current.emit('msg',data.text);
   setMessage((previous)=>[...previous,{text:data.text,sender:'user',timestap:new Date()}])
 }

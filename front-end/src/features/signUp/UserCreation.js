@@ -13,19 +13,21 @@ async function roleCreation(params) {
             method:'POST',
             body:formdata
         })
-         if(!result.ok) throw new Error('Error in Creating role')
+         if(!result.ok) throw new Error('Password or email already exist')
+    
 }
 
 function Createappuser(){
-const navigate = useNavigate
+const navigate = useNavigate()
      const {isLoading:adminLoading,mutate:userCreate} = useMutation({
         mutationFn:(data)=>roleCreation(data),
         onError:(err)=>{
             toast.error(err.message)
+            console.log(err.message)
         },
         onSuccess:()=>{
             toast.success('Successfully created user')
-             navigate('/login')
+             navigate('/')
         }
      })
      return {adminLoading,userCreate}
