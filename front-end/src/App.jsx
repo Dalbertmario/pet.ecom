@@ -24,6 +24,7 @@ import HeaderProducts from './pages/HeaderProducts'
 import Wishlist from './pages/Wishlist'
 import Errorpage from './pages/Errorpage'
 import AdminAddproduct from './pages/admin/AdminAddproduct'
+import AdminEditorAdd from './pages/admin/AdminEditorAdd'
 
 function App() {
 
@@ -38,7 +39,11 @@ const route = createBrowserRouter([
     children:[
       {path:'/admin',element:
       (<ProtectedRoute allowedRoles={['admin']}> <AdminPage/> </ProtectedRoute>)},
-      {path:'/addproduct',element:<ProtectedRoute allowedRoles={['admin']}> <AdminAddproduct/></ProtectedRoute>}
+      {path:'/addproduct',element:<ProtectedRoute allowedRoles={['admin']}> <AdminAddproduct/></ProtectedRoute>},
+      {path:'/adminform/:varid/:proid',element:<ProtectedRoute allowedRoles={['admin']}><AdminEditorAdd/></ProtectedRoute>},
+      {path:'/adminform',element:<ProtectedRoute allowedRoles={['admin']}>
+         <AdminEditorAdd/>
+      </ProtectedRoute>}
     ]
   },
   {element:<Applayout/>,children:[

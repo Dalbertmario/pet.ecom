@@ -1,6 +1,6 @@
 import { TiDeleteOutline } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartToggel, setCheckOutItem } from "../ui/uistore";
+import { setCartToggel } from "../ui/uistore";
 import UsefetchCartItems from "../features/Carting/fetchcartitems";
 import CartDisplay from "../ui/CartDisplay";
 import TotalpriceCart from "../ui/TotalpriceCart";
@@ -30,7 +30,8 @@ function handelCheckOut(){
        {cartData?.cartItem?.length > 0  &&
         <TotalpriceCart data={cartData}/>
 }    
- { cartData?.cartItem?.length > 0  && <button onClick={()=>handelCheckOut()} className="bg-red-500 w-full py-1 hover:bg-red-600 transition-all font-semibold text-white rounded-lg">CheckOut <span>{moneyformat(cartData?.grandtotal)}</span> </button>}
+ { cartData?.cartItem?.length > 0  && <button onClick={()=>handelCheckOut()} className="bg-red-500 w-full py-1 hover:bg-red-600 transition-all font-semibold text-white rounded-lg">CheckOut 
+  <span>{moneyformat(cartData?.grandtotal)}</span> </button>}
 </div>
     </div>
   )

@@ -85,3 +85,10 @@ body {
 .adminHeading{
     @apply font-semibold text-slate-600
 }
+
+.admininput{
+    @apply bg-stone-100 transition-all focus:bg-white focus:outline focus:outline-2 xs:w-[200px] md:w-[80%] xl:w-[80%] focus:outline-blue-500 font-medium text-xs text-stone-700 px-2  py-3 rounded-lg
+}
+.adminbtn{
+    @apply bg-blue-600 rounded-lg hover:bg-blue-500 transition-all text-white font-semibold p-3
+}

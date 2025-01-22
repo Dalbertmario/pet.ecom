@@ -32,7 +32,7 @@ Product.init({
     },
     typeof:{
         type:DataTypes.TEXT,
-        allowNull:true
+        allowNull:false
       }
 },
     {

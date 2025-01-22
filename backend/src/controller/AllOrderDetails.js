@@ -178,10 +178,10 @@ ORDER BY total_orders desc`)
 
 export const adminDeleteItem = async (req,res)=>{
     const {id}=req.params
-
+    console.log(id)
     try{
-      const data = await db.query(`DELETE FROM varient WHERE varientid=$1`,[id])
-      if (result.rowCount === 0) {
+      const data = await db.query(`DELETE FROM varient WHERE id=$1`,[id])
+      if (data.rowCount === 0) {
         return res.status(404).json({ message: "Variant not found" });
       }
      res.status(200).json({message:'Item deleted Successfully'})
@@ -191,3 +191,43 @@ export const adminDeleteItem = async (req,res)=>{
     }
 }
 
+
+export const formdataFetching = async (req, res) => {
+    const { proid, varid } = req.body;
+  
+    try {
+        const result = await db.query(
+            `SELECT p.category,p.productname, p.brandname,p.productsfor, p.productimage,v.offerprice,v.price
+             FROM products p 
+             JOIN varient v ON id = $1 
+             WHERE productid = $2`,
+            [parseInt(varid), parseInt(proid)]
+        );
+        if (result.rowCount === 0) {
+            return res.status(404).json({ message: 'Unexpected error in fetching product and varient for admin form' });
+        }
+        res.status(200).json(result.rows); 
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Unexpected error' });
+    }
+};
+
+export const EditForm = async(req,res)=>{
+    const {productname,brandname,productimage,price,offerprice,category,productsfor,productid,varientid} = req.body
+  
+            try{
+       const result = await db.query(`
+        UPDATE products SET productname=$1,brandname=$2,productimage=$3,category=$4,productsfor=$5 WHERE productid = $6 `,[productname,brandname,productimage,category,productsfor,productid])
+        const result2 = await db.query(`
+            UPDATE varient SET price=$1,offerprice=$2 WHERE id=$3`,[price,offerprice,varientid]
+        )
+        if(result.rowCount === 0 || result2.rowCount === 0){
+            res.status(404).json({message:'Error in editing successfully'})
+        }
+        res.status(200).json({message:'Edit successfully'})
+    }catch(err){
+        console.log(err.message)
+        res.status(500).json({message:'Unexpected error'})
+    }
+} 

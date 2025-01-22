@@ -5,10 +5,12 @@ import { FaPlus } from "react-icons/fa";
 import { moneyformat } from "../helper/Moneyformat";
 import WarningCancelOrder from "./WarningCancelOrder";    
 import Loading from "../ui/Loading";
+import UseItemDelete from "../features/checkOut/OrderDeleting";
 
 
 
 export default function UserOrder() {
+  const {mutate}=UseItemDelete()
   const { data, isLoading } = UseOrderFeching();
   const [canceling, setCanceling] = useState(false);
   const [orderid,setOrderid]=useState(null)
@@ -30,7 +32,7 @@ export default function UserOrder() {
 
   return (
     <div className="contenBody p-4">
-      {canceling && <WarningCancelOrder btnState={canceling} btnCancel={setCanceling} orderid={orderid} />}
+      {canceling && <WarningCancelOrder fn={mutate} btnState={canceling} btnCancel={setCanceling} orderid={orderid} />}
       <h1 className="text-xl font-semibold text-slate-600">Your orders</h1>
       <ul className="flex flex-col gap-5 justify-center">
         {data?.map((el) => (

@@ -1,5 +1,5 @@
 import express from 'express'
-import { adminDeleteItem, Allorder, orderdetails, ProductShowFromTo, userRecentorder } from '../controller/AllOrderDetails.js'
+import { adminDeleteItem, Allorder, EditForm, formdataFetching, orderdetails, ProductShowFromTo, userRecentorder } from '../controller/AllOrderDetails.js'
 
 const router = express.Router()
 
@@ -11,5 +11,10 @@ router.get('/adminRecentOrder',userRecentorder)
 
 router.post('/allOrderFromto',ProductShowFromTo)
 
-router.delete('/adminDelete',adminDeleteItem)
+router.delete('/adminDelete/:id',adminDeleteItem)
+
+router.post('/form',formdataFetching)
+
+router.put('/editproduct',EditForm)
+
 export default router

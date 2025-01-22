@@ -14,7 +14,7 @@ const [select,setSelect]=useState('weekly')
 const {data,isLoading} = UseAllDataFetching(select)
 const {data:totalorder,isLoading:totalOrderloading}=UseAllOrderDetails()
 const {data:recentOrder,isLoading:recentOrderLoading}=UserecentenOrder()
-if(isLoading) return <Loading/>
+if(isLoading || totalOrderloading || recentOrderLoading) return <Loading/>
   return (
     <div className=" flex flex-col p-3 gap-4 h-full bg-stone-200" >
       <div className="flex gap-4 flex-row w-[300px]">

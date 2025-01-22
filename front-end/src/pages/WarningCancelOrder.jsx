@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import UseItemDelete from "../features/checkOut/OrderDeleting";
 
-export default function WarningCancelOrder({orderid,btnCancel,btnState}) {
-const {mutate}=UseItemDelete()
+export default function WarningCancelOrder({fn,orderid,btnCancel,btnState}) {
 const ref = useRef()
 
 useEffect(function(){
@@ -22,10 +20,10 @@ useEffect(function(){
 
 function handelConformDelete(){
    btnCancel(e=>!e)
-  mutate(orderid)
-  console.log(orderid)
+   fn(orderid)
+   console.log(orderid)
 }
-
+console.log(orderid)
   return ReactDOM.createPortal(
      <div ref={ref}  className="fixed inset-0  bg-black bg-opacity-50 flex justify-center items-center z-50 ">
         <div  className="bg-white rounded-xl p-5 z-10 xs:max-w-[400px] md:max-w-[600px] xl:max-w-[800px]">

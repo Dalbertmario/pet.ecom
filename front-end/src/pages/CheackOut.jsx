@@ -21,18 +21,7 @@ function handelOrderPost(data){
      mutate({userid:role.user.id,items:setup})
 } 
 
-// console.log((cartData?.cartItem?.map(
-//     (item, idx) =>{
-//         console.log(idx)
-//      return `($1, $${2 + idx * 3} , $${3 +idx * 3}, $${4 +idx * 3})`
-//     }
-//   ).join(','))
-//   )
-// // const dd = cartData.cartItem.flatMap(el=>[
-// //     el?.cartid,
-// //     el?.productname
-// // ])
-// // console.log(...dd)
+
   return (
     <div className="contenBody p-2">
        <div>
